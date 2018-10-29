@@ -8,12 +8,13 @@
 |value| The value observed| 1000|
 
 #### Example:
-![1](https://user-images.githubusercontent.com/44469540/47647581-76cd4780-db88-11e8-808b-7f81a8260a4f.PNG)
+![1](https://user-images.githubusercontent.com/44469540/47647934-94e77780-db89-11e8-8c24-6de6dd8a8238.PNG)
 
 ## 2. FDTS - Forecast dynamic table schema
 #### Example:
-![2](https://user-images.githubusercontent.com/44469540/47647634-9bc1ba80-db88-11e8-8b37-d5bcfd722d18.PNG)
+![2](https://user-images.githubusercontent.com/44469540/47647953-a2046680-db89-11e8-9ae3-fefc56cb5372.PNG)
+
 ## 3. FTS - Forecast table schema
 
 #### Example:
-![3](https://user-images.githubusercontent.com/44469540/47647650-a7ad7c80-db88-11e8-9f36-4c3724f95ab6.PNG)
+![3](https://user-images.githubusercontent.com/44469540/47647960-a92b7480-db89-11e8-953d-3bc8353df903.PNG)
