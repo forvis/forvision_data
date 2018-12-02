@@ -1,4 +1,4 @@
-,series_id,method,timestamp,origin_timestamp,forecast,horizon,Lo90,Hi90
+,series_id,method,timestamp,origin_timestamp,forecast,horizon,lo90,hi90
 1,Y1,A,1989,1988,5406.43,1,5183.349437,5629.510563
 2,Y1,A,1990,1988,5875.96,2,5652.879437,6099.040563
 3,Y1,A,1991,1988,6345.48,3,6122.399437,6568.560563
