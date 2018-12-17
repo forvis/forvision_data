@@ -1,52 +1,68 @@
-# data for forvision package
+# Data for forvision package
 
 ## 1. TSTS -  Time series table schema 
-| File name (column name)| Description | Examples|
-|-----|-----|-----|
-|series_id| Time series identifier -a unique name that identifies a time series| "Y1"|
-|timestamp| Any representation of the period to which the observation relates. | "“01.01.1997” in case of daily data "|
-|value| The value observed| 1000|
+In time series table schema each observation is stored in a table as a separate record (line):
+
+| Field name (column name)| Description| Examples |
+| --- | --- | ---- |
+|series_id*| Time series identifier - a unique name that identifies a time series  | “Y1” |
+|timestamp*|Any representation of the period to which the observation relates. We recommend the use of [the ISO 8601 standard](https://en.wikipedia.org/wiki/ISO_8601)|"1997" in case of yearly data, "1997-01-20" in case of daily data, "1997-11" in case of monthly data, "1997-W03" in case of weekly data, "2018-Q2" in case of quarterly data|
+|value|The value observed |1000|
+
+*the key (the unique value that should not duplicated) for this table schema is series_id, timestamp. In other words, we cannot have two (or more) records in a table relating to the same time series and the same period of observation (timestamp)
 
 #### Example:
-![1](https://user-images.githubusercontent.com/44469540/47648065-e55ed500-db89-11e8-921b-4df7060ed7a6.PNG)
+```
+  series_id   value   timestamp
+1         Y1 3103.96      1984
+2         Y1 3360.27      1985
+3         Y1 3807.63      1986
+4         Y1 4387.88      1987
+5         Y1 4936.99      1988
+6         Y1 5379.75      1989
+7         Y1 6158.68      1990
+8         Y1 6876.58      1991
+9         Y2 5389.80      1984
+10        Y2 5384.40      1985
+```
 
-## 2. FDTS - Forecast dynamic table schema
+## 2. FTS - Forecast table schema
+Forecast Table Schema is needed to store forecasting results.
+
+Each table line corresponds to all the forecasting results obtained for a given time series series using a given method for a given horizon for a given origin:
+
+
+| Field name (column name)| Description| Examples |
+| --- | ---| ---- |
+|series_id* | Time series ID for which the forecast was calculated| "Y1" |
+|timestamp*|Any representation of the period to which the observation relates. We recommend the use of the [ISO 8601 standard](https://en.wikipedia.org/wiki/ISO_8601)|"1997" in case of yearly data, "1997-01-20" in case of daily data, "1997-11" in case of monthly data, "1997-W03" in case of weekly data, "2018-Q2" in case of quarterly data|
+|origin_timestamp*|Origin of the forecast (provided in a timestamp format)|"1996-12-29"|
+|horizon*| Forecast horizon| 3 |
+|method*| Method identifier - a unique name that identifies a method by which the forecasting result was calculated| "ARIMA"|
+|forecast| Point forecast| 234|
+|lo95| The lower limit for the 95% prediction interval|178|
+|hi95| The upper limit for the 95% prediction interval|273|
+
+*the key (the unique value that should not duplicated) for this table schema is series_id, method, timestamp, origin_timestamp, horizon. 
+
 #### Example:
-![2](https://user-images.githubusercontent.com/44469540/47647953-a2046680-db89-11e8-9ae3-fefc56cb5372.PNG)
 
-## 3. FTS - Forecast table schema
+```
+   series_id   method  timestamp       origin_timestamp  forecast  horizon   lo90     hi90
+1         Y1      A       1989              1988          5406.43      1    5183.349 5629.511
+2         Y1      A       1990              1988          5875.96      2    5652.879 6099.041
+3         Y1      A       1991              1988          6345.48      3    6122.399 6568.561
+4         Y1      B       1989              1988          5473.87      1    5250.789 5696.951
+5         Y1      B       1990              1988          6010.43      2    5787.349 6233.511
+6         Y1      B       1991              1988          6546.63      3    6323.549 6769.711
+7         Y1      C       1989              1988          5406.43      1    5183.349 5629.511
+8         Y1      C       1990              1988          5875.96      2    5652.879 6099.041
+9         Y1      C       1991              1988          6345.48      3    6122.399 6568.561
+10        Y2      A       1989              1988          4142.60      1    3919.519 4365.681
+```
 
-#### Example:
-![3](https://user-images.githubusercontent.com/44469540/47648076-ee4fa680-db89-11e8-93c4-39c5382315fa.PNG)
+## 3. M3-Competition data
 
-
-# M3Data
-The 3003 time series from the IJF-M3 competition (Makridakis and Hibon, 2000) and M3 Data with Rolling-Origin and Interval Forecasts saved as csv files
-
-The 3003 time series of the M3-Competition are distributed as follows:
-![m3data](https://user-images.githubusercontent.com/31816408/36041667-54a869fe-0dda-11e8-839a-1310ba94e60c.JPG)
-
-The 3003 time series of M3-Competition (the historical data + the future data) are saved as follows:
-
-![m3series](https://user-images.githubusercontent.com/31816408/36041980-64f984cc-0ddb-11e8-86d1-21e00b10dccf.JPG)
-
-The 3003 time series (only the future data - test data - actual) with forecasts from difference methods of M3-Competition 
-are saved as follows:
+## 4. M3 prediction intervals
 
 
-
-
-![m3forecast](https://user-images.githubusercontent.com/31816408/36041987-69d74cfe-0ddb-11e8-8c70-45254db00406.JPG)
-
-Forecasts of 3003 time series of M3-Competition using ARIMA model with Rolling-Origin and Interval Forecasts 
-are saved as follows:
-
-
-
-
-![m3ci](https://user-images.githubusercontent.com/31816408/36041990-6db75170-0ddb-11e8-9660-484902fb7a5e.JPG)
-
-
-Time series + Forecasts of 3003 time series of M3-Competition using ARIMA model with Rolling-Origin and Interval Forecasts 
-are saved as follows:
-![capture](https://user-images.githubusercontent.com/31816408/36153240-a848ce26-10de-11e8-9967-a1683f0b489a.JPG)
