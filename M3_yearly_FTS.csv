@@ -1,4 +1,4 @@
-series_id,method_id,forecast,horizon,timestamp,origin_timestamp
+series_id,method,forecast,horizon,timestamp,origin_timestamp
 Y1,NAIVE2,4936.99,1,1989,1988
 Y1,NAIVE2,4936.99,2,1990,1988
 Y1,NAIVE2,4936.99,3,1991,1988
