@@ -1,4 +1,4 @@
-"series_id","method","forecast","horizon","timestamp","origin_timestamp"
+"series_id","method_id","forecast","horizon","timestamp","origin_timestamp"
 "O1","NAIVE2",4542.51,1,97,96
 "O1","NAIVE2",4542.51,2,98,96
 "O1","NAIVE2",4542.51,3,99,96
